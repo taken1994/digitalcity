@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Basic Example with JSX</title>
+    <link rel="stylesheet" href="../shared/css/base.css" />
+  </head>
+  <body>
+    <div id="container"></div>
+
+    <script src="../../build/react.js"></script>
+    <script src="../../build/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+    <script type="text/babel">
+      var Mydemo = React.createClass({
+        getInitialState:function () {
+          return{
+            num:0,
+            display:false
+          }
+        },
+        handelClick:function () {
+          this.setState({
+            num:this.state.num+1,
+            display:!this.state.display
+          })
+        },
+        render:function () {
+          var divshow=this.state.display? 'block' : 'none';
+          var styles={
+            mydiv:{
+              width:'300px',
+              height: '300px',
+              marginTop: '20px',
+              backgroundColor: 'teal',
+              display: divshow
+            }
+          }
+          return(
+            <div>
+              <h1>数量：{this.state.num}</h1>
+              <button onClick={this.handelClick}>click</button>
+              <div style={styles.mydiv} ></div>
+            </div>
+          )
+        }
+      })
+      ReactDOM.render(<Mydemo />,document.getElementById('container'));
+    </script>
+  </body>
+</html>
